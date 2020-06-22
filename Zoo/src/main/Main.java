@@ -108,5 +108,6 @@ public class Main {
 		}
 		System.out.println("\nRegresar al menu principal? 1=si, 2=no");
 		}while(lector.nextInt()==1);
+	lector.close();
 	}
 }
