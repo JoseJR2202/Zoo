@@ -2,26 +2,15 @@ package main;
 
 import java.util.ArrayList;
 import com.Zoo.packege1.*;
-import java.util.Scanner;
+import zoo_GUI.VentanaMenu;
 public class Main {
 
 	public static void main(String[] args) {
-		//Creando variables a usar...
-		Scanner lector=new Scanner(System.in);
-		int opcion;
-		String name;
-		String lugar;
-		String come;
-		String caracteristico[]= {Aves.Caracteristica(),
-								  Mamiferos.Caracteristica(),
-								  Anfibios.Caracteristica(),
-								  Reptiles.Caracteristica()};
-		byte numero;
 		//Creando listas...
-		ArrayList<Mamiferos> ListaMamifero=new ArrayList<Mamiferos>();
-		ArrayList<Aves> ListaAves=new ArrayList<Aves>();
-		ArrayList<Anfibios> ListaAnfibios=new ArrayList<Anfibios>();
-		ArrayList<Reptiles> ListaReptiles=new ArrayList<Reptiles>();
+		ArrayList<Animales> ListaMamifero=new ArrayList<Animales>();
+		ArrayList<Animales> ListaAves=new ArrayList<Animales>();
+		ArrayList<Animales> ListaAnfibios=new ArrayList<Animales>();
+		ArrayList<Animales> ListaReptiles=new ArrayList<Animales>();
 		//agregando algunos animales...
 		//Mamiferos
 		ListaMamifero.add(new Monotremas("Oritorinco",(byte)12));
@@ -41,73 +30,12 @@ public class Main {
 		ListaAnfibios.add(new Anfibios("Salamandras","Europa",(byte)7));
 		ListaAnfibios.add(new Anfibios("Cecilido","Pantano",(byte)7));
 		ListaAnfibios.add(new Anfibios("Rana toro","Norte America",(byte)7));
-		//Menu de opciones
-		do {
-		System.out.println("\t\t\tMenu opciones:");
-		System.out.println("1.-Ingresar animales\n2.-Mostrar animales");
-		System.out.print("Su opcion: ");
-		if(lector.nextInt()==1) {
-			System.out.println("\t\t\tQue animal va agregar?");
-			//menu de opciones para agregar...
-			Animales.Menu();
-			opcion=lector.nextInt();
-			System.out.println(caracteristico[opcion-1]);
-			System.out.print("Ingrese nombre del animal: ");
-			lector.nextLine();
-			name=lector.nextLine();
-			System.out.print("\nCantidad en el ZOO: ");
-			numero=lector.nextByte();
-			lector.nextLine();
-			switch(opcion) {
-			case 1:System.out.print("\nIngrese Habitad: ");
-				lugar=lector.nextLine();
-				System.out.print("\nGrupo alimenticio del animal: ");
-				come=lector.next();
-				System.out.println("\nEl ave ingresado es ratida? 1=si, 2=no");
-				ListaAves.add((lector.nextInt()==2)? new Aves(name,come,lugar,numero):new Ratidas(name,come,lugar,numero));
-				break;
-			case 2:System.out.print("\nEl mamifero ingresado es Monotremas(pone huevos)?"
-									+ " 1=si, 2=no");
-				if(lector.nextInt()==1)
-					ListaMamifero.add(new Monotremas(name,numero));
-				else {
-					System.out.print("\nIngrese Habitad: ");
-					lector.nextLine();
-					lugar=lector.nextLine();
-					System.out.print("\nGrupo alimenticio del animal: ");
-					come=lector.next();
-					ListaMamifero.add(new Mamiferos(name,come,lugar,numero));
-				}
-				break;
-			case 3:System.out.print("\nIngrese Habitad: ");
-			lugar=lector.nextLine();
-			ListaAnfibios.add(new Anfibios(name,lugar,numero));
-			break;
-			case 4:System.out.print("\nIngrese Habitad: ");
-				lugar=lector.nextLine();
-				System.out.println("\nEl animal ingresado que tipo de reptil es:");
-				System.out.println("1.-Cocodrilia\n2.-Quelenios\n3.-Squamata");
-				opcion=lector.nextInt();
-				ListaReptiles.add((opcion==1)? new Cocodrilia(name,lugar,numero) :(opcion<3)? new Quelonios(name,lugar,numero):new Squamata(name,lugar,numero));
-				break;
-			}
-		}
-		else {
-			System.out.println("Que lista mostrar?");
-			Animales.Menu();
-			switch(lector.nextInt()) {
-			case 1:System.out.println(ListaAves);
-			System.out.println(Aves.Caracteristica(ListaAves));break;
-			case 2:System.out.println(ListaMamifero);
-			System.out.println(Mamiferos.Caracteristica(ListaMamifero));break;
-			case 3:System.out.println(ListaAnfibios);
-			System.out.println(Anfibios.Caracteristica(ListaAnfibios));break;
-			case 4:System.out.println(ListaReptiles);
-			System.out.println(Reptiles.Caracteristica(ListaReptiles));break;
-			}
-		}
-		System.out.println("\nRegresar al menu principal? 1=si, 2=no");
-		}while(lector.nextInt()==1);
-	lector.close();
+		//ArrayList de ArrayList...
+		ArrayList<ArrayList<Animales>> animal= new ArrayList<ArrayList<Animales>>();
+		animal.add(ListaMamifero);
+		animal.add(ListaAnfibios);
+		animal.add(ListaAves);
+		animal.add(ListaReptiles);
+		VentanaMenu zoo=new VentanaMenu(animal);
 	}
 }

@@ -11,7 +11,7 @@ public class Reptiles extends Animales {
 	@Override
 	public String transporte() {
 		// TODO Auto-generated method stub
-		return null;
+		return "Terrestre";
 	}
 
 	@Override
@@ -33,6 +33,6 @@ public class Reptiles extends Animales {
 		for(int i=0;i<b.size();i++) {
 			suma+=b.get(i).getCantidad();
 		}
-		return"La cantidad total de Retiles en el ZOO es "+suma;
+		return"La cantidad "+suma;
 	}
 }

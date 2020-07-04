@@ -62,7 +62,7 @@ public abstract class Animales implements Movilizar {
 	@Override
 	public String toString() {
 		return "Nombre: "+getNombre()+"{\nEspecie: "+getCategoria()+"\nCantidad en el ZOO: "+getCantidad()+
-				"\nGrupo alimenticio:"+getGrupoAliment()+"\nHabitad: "+getHabitad()+
+				"\nGrupo alimenticio: "+getGrupoAliment()+"\nHabitad: "+getHabitad()+
 				"\nEstructura interna: " + EstructInt() +"\nReproducen: " + Reproducen()
 				+"\nTransporte: " + transporte()+"\n}\n\n";
 	}

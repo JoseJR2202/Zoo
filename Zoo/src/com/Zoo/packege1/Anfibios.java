@@ -34,6 +34,6 @@ public class Anfibios extends Animales {
 		for(int i=0;i<b.size();i++) {
 			suma+=b.get(i).getCantidad();
 		}
-		return"La cantidad total de Anfibios en el ZOO es "+suma;
+		return"Total "+suma;
 	}
 }
