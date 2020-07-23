@@ -55,8 +55,28 @@ public class base {
 			}
 		}
 	}
-	//moviendome por las tav\blas vive y moviliza...
-	public void Imprime(String query,Object [] obj) {
+	//En un arreglo de objetos
+	public void Imprime(String query, String [] data) {
+		try {
+			this.stmt=this.conn.createStatement();
+			this.rs=this.stmt.executeQuery(query);
+			while(rs.next()) {
+				for(int i=0;i<7;i++) 
+					data[i]=(i!=2)? rs.getString(i+1):Integer.toString(rs.getInt(i+1));
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				this.stmt.close();
+				this.rs.close();
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	//moviendome por las tablas vive y moviliza...
+	public void ImprimeVM(String query,Object [] obj) {
 		try {
 			this.stmt=this.conn.createStatement();
 			this.rs=this.stmt.executeQuery(query);
@@ -76,6 +96,23 @@ public class base {
 			}catch (SQLException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+	public String[] nombres() {
+		try {
+			stmt=conn.createStatement();
+			rs=stmt.executeQuery("Select count(NombreC) from animal");
+			String obj[]=new String[rs.getInt(1)];
+			int i=0;
+			while(rs.next()) {
+				obj[i]=rs.getString(1);
+				i++;
+			}
+			return obj;
+		}catch (SQLException e) {
+			e.printStackTrace();
+			String dato[]= {"Error"};
+			return dato;
 		}
 	}
 	//ingreso a tablas...
